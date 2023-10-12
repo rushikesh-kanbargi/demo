@@ -1,0 +1,30 @@
+<!-- src/app/data-list/data-list.component.html -->
+  <div>
+    <select [(ngModel)]="sortBy" (change)="changeSort(sortBy)">
+      <option value="id">Sort by ID</option>
+      <option value="sender">Sort by Sender</option>
+      <option value="receiver">Sort by Receiver</option>
+      <option value="totalAmount">Sort by Total Amount</option>
+    </select>
+  </div>
+  <div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Total Amount</th>
+      </tr>
+      <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.sender }}</td>
+        <td>{{ item.receiver }}</td>
+        <td>{{ item.totalAmount }}</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">Previous</button>
+    <span>{{ currentPage }} / {{ totalPages }}</span>
+    <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">Next</button>
+  </div>
